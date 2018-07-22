@@ -3,6 +3,7 @@ package ml.bmlzootown.Tasks;
 import ml.bmlzootown.SafeStaff;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
@@ -23,16 +24,16 @@ public class AntiBurnCreme {
                     Block phead = new Location(p.getWorld(), p.getLocation().getX(), p.getLocation().getY() + 1.0, p.getLocation().getZ()).getBlock();
                     Block pbod =  p.getLocation().getBlock();
                     Block pbelow = new Location(p.getWorld(), p.getLocation().getX(), p.getLocation().getY() - 1.0, p.getLocation().getZ()).getBlock();
-                    if (phead.getType() == Material.STATIONARY_LAVA || phead.getType() == Material.LAVA) {
-                        p.setHealth(p.getMaxHealth());
+                    if (phead.getType() == Material.LAVA) {
+                        p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
                         p.setFoodLevel(20);
                         p.setFireTicks(0);
-                    } else if (pbod.getType() == Material.STATIONARY_LAVA || pbod.getType() == Material.LAVA) {
-                        p.setHealth(p.getMaxHealth());
+                    } else if (pbod.getType() == Material.LAVA) {
+                        p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
                         p.setFoodLevel(20);
                         p.setFireTicks(0);
-                    } else if (pbelow.getType() == Material.STATIONARY_LAVA || pbelow.getType() == Material.LAVA) {
-                        p.setHealth(p.getMaxHealth());
+                    } else if (pbelow.getType() == Material.LAVA) {
+                        p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
                         p.setFoodLevel(20);
                         p.setFireTicks(0);
                     } else {

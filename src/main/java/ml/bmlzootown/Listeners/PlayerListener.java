@@ -45,7 +45,7 @@ public class PlayerListener implements Listener{
 
 			boolean test = true;
 			Material below = p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType();
-			if (below == Material.STEP || below == Material.WOOD_STEP) {
+			if (below.name().toLowerCase().contains("_slab")) {
 				test = false;
 			}
 			while (test) {
@@ -68,12 +68,14 @@ public class PlayerListener implements Listener{
 
 						for (BlockHeights bh : BlockHeights.values()) {
 							String bName = belowp.getBlock().getType().name();
-							if (bName.equalsIgnoreCase(bh.name())) {
+							//if (bName.equalsIgnoreCase(bh.name())) {
+							if (bName.toLowerCase().contains(bh.name().toLowerCase())) {
 								height = bh.getHeights();
 							}
 						}
 
-						if (belowp.getBlock().getType().name().equalsIgnoreCase(Material.STEP.name())) {
+						//if (belowp.getBlock().getType().name().equalsIgnoreCase(Material.STEP.name())) {
+						if (belowp.getBlock().getType().name().toLowerCase().contains("_slab")) {
 							int stepData = (int) belowp.getBlock().getData();
 							if (stepData >= 0 && stepData <= 7) {
 								height = 0.5;
@@ -82,7 +84,7 @@ public class PlayerListener implements Listener{
 							}
 						}
 
-						if (belowp.getBlock().getType().name().equalsIgnoreCase(Material.STATIONARY_LAVA.name()) || belowp.getBlock().getType().name().equalsIgnoreCase(Material.LAVA.name())) {
+						if (belowp.getBlock().getType().name().equalsIgnoreCase(Material.LAVA.name())) {
 							AntiBurnCreme.noBurn(p, p.getHealth(), p.getFoodLevel());
 						}
 
@@ -99,14 +101,14 @@ public class PlayerListener implements Listener{
 				Block pbod =  p.getLocation().getBlock();
 				Block pbelow = new Location(p.getWorld(), p.getLocation().getX(), p.getLocation().getY() - 1.0, p.getLocation().getZ()).getBlock();
 
-				if (phead.getType() == Material.STATIONARY_WATER || phead.getType() == Material.WATER) {
+				if (phead.getType() == Material.WATER) {
 					AirFreshener.airFreshener(p,this.pl);
 				}
-				if (phead.getType() == Material.STATIONARY_LAVA || phead.getType() == Material.LAVA) {
+				if (phead.getType() == Material.LAVA) {
 					AntiBurnCreme.noBurn(p, p.getHealth(), p.getFoodLevel());
-				} else if (pbod.getType() == Material.STATIONARY_LAVA || pbod.getType() == Material.LAVA) {
+				} else if (pbod.getType() == Material.LAVA) {
 					AntiBurnCreme.noBurn(p, p.getHealth(), p.getFoodLevel());
-				} else if (pbelow.getType() == Material.STATIONARY_LAVA || pbelow.getType() == Material.LAVA) {
+				} else if (pbelow.getType() == Material.LAVA) {
 					AntiBurnCreme.noBurn(p, p.getHealth(), p.getFoodLevel());
 				}
 

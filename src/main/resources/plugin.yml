@@ -2,6 +2,7 @@ name: SafeStaff
 author: bmlzootown
 version: 1.5
 main: ml.bmlzootown.SafeStaff
+api-version: 1.13
 commands:
      safestaff:
           description: Displays available commands for SafeStaff
