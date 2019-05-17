@@ -1,6 +1,6 @@
-name: SafeStaff
+name: ${project.name}
 author: bmlzootown
-version: 1.5
+version: ${project.version}
 main: ml.bmlzootown.SafeStaff
 api-version: 1.13
 commands:
