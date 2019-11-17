@@ -25,6 +25,7 @@ public class SafeStaff extends JavaPlugin{
 	public HashMap<String, Integer> attempts = new HashMap<String, Integer>();
 
 	public void onEnable() {
+		// Version 1.5.1
 		this.log.info("[SafeStaff] is now enabled!");
 		plugin = this;
 		File file = new File(getDataFolder() + File.separator + "config.yml");
