@@ -39,11 +39,6 @@ public class SafeStaff extends JavaPlugin{
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(this.pl, this);
 
-		/*if (Updater.needUpdate()) {
-			this.log.info("[SafeStaff] Update available! Newest Version: " + Updater.newestVersion);
-			this.log.info("Run /safestaff update to get the latest version.");
-		}*/
-
 	}
 	
 	public void onDisable() {
@@ -67,19 +62,6 @@ public class SafeStaff extends JavaPlugin{
 				} else if (args[0].equalsIgnoreCase("reload")) {
 					reloadConfig();
 					p.sendMessage(ChatColor.GOLD + "[SafeStaff] Config reloaded!");
-				} else if (args[0].equalsIgnoreCase("update")) {
-					if (sender.hasPermission("SafeStaff.notification")) {
-						if (Updater.needUpdate()) {
-							sender.sendMessage(ChatColor.RED + Updater.updatePlugin());
-							return true;
-						} else {
-							sender.sendMessage(ChatColor.RED + "[SafeStaff] Update not available!");
-							return true;
-						}
-					} else {
-						sender.sendMessage(ChatColor.RED + "You do not have permission to do this!");
-						return true;
-					}
 				} else {
 					p.sendMessage(ChatColor.RED + "Incorrect Usage: See /safestaff");
 				}

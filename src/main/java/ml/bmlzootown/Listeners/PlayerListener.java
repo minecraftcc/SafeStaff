@@ -6,7 +6,6 @@ import ml.bmlzootown.BlockHeights;
 import ml.bmlzootown.SafeStaff;
 import ml.bmlzootown.Tasks.AirFreshener;
 import ml.bmlzootown.Tasks.AntiBurnCreme;
-import ml.bmlzootown.Updater;
 import org.bukkit.ChatColor;
 //import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -115,11 +114,6 @@ public class PlayerListener implements Listener{
 			//}
 		}
 
-		/*if (p.hasPermission("SafeStaff.notification")) {
-			if (Updater.needUpdate()) {
-				//p.sendMessage(ChatColor.RED + "[SafeStaff] Update available! Newest Version: " + ChatColor.BOLD + Updater.newestVersion);
-			}
-		}*/
 	}
 
 	@EventHandler(priority = EventPriority.LOWEST)

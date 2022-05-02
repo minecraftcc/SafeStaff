@@ -2,7 +2,7 @@ name: ${project.name}
 author: bmlzootown
 version: ${project.version}
 main: ml.bmlzootown.SafeStaff
-api-version: 1.15
+api-version: 1.18
 commands:
      safestaff:
           description: Displays available commands for SafeStaff
