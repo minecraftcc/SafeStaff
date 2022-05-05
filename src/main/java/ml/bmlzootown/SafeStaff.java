@@ -71,7 +71,6 @@ public class SafeStaff extends JavaPlugin implements PluginMessageListener {
 
 		ByteArrayDataOutput o = ByteStreams.newDataOutput();
 		// Channel = SafeStaff
-		plugin.getLogger().info("SendingMessage to " + channelName + " " + subChannelName);
 		o.writeUTF(subChannelName);
 		o.writeUTF(data);
 
