@@ -43,7 +43,8 @@ public class SafeStaff extends JavaPlugin implements PluginMessageListener {
 		}
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(this.pl, this);
-
+		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "bml:safestaff");
+		this.getServer().getMessenger().registerIncomingPluginChannel(this, "bml:safestaff", this);
 	}
 	
 	public void onDisable() {
@@ -67,11 +68,22 @@ public class SafeStaff extends JavaPlugin implements PluginMessageListener {
 		if (Bukkit.getServer().getOnlinePlayers().size() < 1) {
 			return;
 		}
+
 		ByteArrayDataOutput o = ByteStreams.newDataOutput();
 		// Channel = SafeStaff
+		plugin.getLogger().info("SendingMessage to " + channelName + " " + subChannelName);
 		o.writeUTF(subChannelName);
 		o.writeUTF(data);
-		Bukkit.getServer().sendPluginMessage(plugin, channelName, o.toByteArray());
+
+		new java.util.Timer().schedule(
+				new java.util.TimerTask() {
+					@Override
+					public void run() {
+						Bukkit.getServer().sendPluginMessage(plugin, channelName, o.toByteArray());
+					}
+				},
+				1000
+		);
 	}
 	
 	 public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
