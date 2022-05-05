@@ -52,7 +52,7 @@ public class SafeStaff extends JavaPlugin implements PluginMessageListener {
 
 	@Override
 	public void onPluginMessageReceived(String channel, Player player, byte[] message) {
-		if (!channel.equals("SafeStaff")) {
+		if (!channel.equals("bml:SafeStaff")) {
 			return;
 		}
 		ByteArrayDataInput in = ByteStreams.newDataInput(message);
@@ -128,7 +128,7 @@ public class SafeStaff extends JavaPlugin implements PluginMessageListener {
 							if (args[0].equals(getConfig().get("admin_login"))) {
 			            		p.sendMessage(ChatColor.RED + "You are now logged in!");
 			            		this.notLoggedIn.remove(p.getName());
-								sendPluginMessage(plugin,"SafeStaff", "LoggedIn", p.getUniqueId().toString());
+								sendPluginMessage(plugin,"bml:safestaff", "authenticated", p.getUniqueId().toString());
 			            		return true;
 			            	}
 			            }
@@ -137,7 +137,7 @@ public class SafeStaff extends JavaPlugin implements PluginMessageListener {
 			            		if (args[0].equals(getConfig().get("mod_login"))) {
 			            			p.sendMessage(ChatColor.GREEN + "You are now logged in!");
 			            			this.notLoggedIn.remove(p.getName());
-									sendPluginMessage(plugin,"SafeStaff", "LoggedIn", p.getUniqueId().toString());
+									sendPluginMessage(plugin,"bml:safestaff", "authenticated", p.getUniqueId().toString());
 			            			return true;
 			            		}
 			            	}

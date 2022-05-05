@@ -40,7 +40,7 @@ public class PlayerListener implements Listener{
 			p.sendMessage(ChatColor.RED + "Please login! /login [password]");
 			this.pl.notLoggedIn.put(p.getName(), "true");
 			this.pl.attempts.put(p.getName(), Integer.valueOf(this.pl.getConfig().getInt("maxAttempts")));
-			sendPluginMessage(this.pl, "SafeStaff", "Joined", p.getUniqueId().toString());
+			sendPluginMessage(this.pl, "bml:safestaff", "joined", p.getUniqueId().toString());
 
 			belowp = p.getLocation().subtract(0,1,0).getBlock().getLocation();
 			Material belowb = p.getLocation().subtract(0,1,0).getBlock().getType();
