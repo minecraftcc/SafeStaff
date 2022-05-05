@@ -52,7 +52,7 @@ public class SafeStaff extends JavaPlugin implements PluginMessageListener {
 
 	@Override
 	public void onPluginMessageReceived(String channel, Player player, byte[] message) {
-		if (!channel.equals("bml:SafeStaff")) {
+		if (!channel.equals("bml:safestaff")) {
 			return;
 		}
 		ByteArrayDataInput in = ByteStreams.newDataInput(message);
