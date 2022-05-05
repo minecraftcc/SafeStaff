@@ -4,7 +4,11 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import ml.bmlzootown.Listeners.PlayerListener;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -15,9 +19,10 @@ import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.PluginMessageListener;
 
 
-public class SafeStaff extends JavaPlugin{
+public class SafeStaff extends JavaPlugin implements PluginMessageListener {
 	public static Plugin plugin;
 	Logger log = Logger.getLogger("Minecraft");
 	public PlayerListener pl = new PlayerListener(this);
@@ -43,6 +48,30 @@ public class SafeStaff extends JavaPlugin{
 	
 	public void onDisable() {
 		this.log.info("[SafeStaff] is now disabled!");
+	}
+
+	@Override
+	public void onPluginMessageReceived(String channel, Player player, byte[] message) {
+		if (!channel.equals("SafeStaff")) {
+			return;
+		}
+		ByteArrayDataInput in = ByteStreams.newDataInput(message);
+		String subChannel = in.readUTF();
+		if (subChannel.equalsIgnoreCase("Testing")) {
+			String data = in.readUTF();
+			this.log.info("onPluginMessage: " + data);
+		}
+	}
+
+	public static void sendPluginMessage(Plugin plugin, String channelName, String subChannelName, String data) {
+		if (Bukkit.getServer().getOnlinePlayers().size() < 1) {
+			return;
+		}
+		ByteArrayDataOutput o = ByteStreams.newDataOutput();
+		// Channel = SafeStaff
+		o.writeUTF(subChannelName);
+		o.writeUTF(data);
+		Bukkit.getServer().sendPluginMessage(plugin, channelName, o.toByteArray());
 	}
 	
 	 public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -99,6 +128,7 @@ public class SafeStaff extends JavaPlugin{
 							if (args[0].equals(getConfig().get("admin_login"))) {
 			            		p.sendMessage(ChatColor.RED + "You are now logged in!");
 			            		this.notLoggedIn.remove(p.getName());
+								sendPluginMessage(plugin,"SafeStaff", "LoggedIn", p.getUniqueId().toString());
 			            		return true;
 			            	}
 			            }
@@ -107,6 +137,7 @@ public class SafeStaff extends JavaPlugin{
 			            		if (args[0].equals(getConfig().get("mod_login"))) {
 			            			p.sendMessage(ChatColor.GREEN + "You are now logged in!");
 			            			this.notLoggedIn.remove(p.getName());
+									sendPluginMessage(plugin,"SafeStaff", "LoggedIn", p.getUniqueId().toString());
 			            			return true;
 			            		}
 			            	}

@@ -22,6 +22,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.*;
 
+import static ml.bmlzootown.SafeStaff.sendPluginMessage;
+
 public class PlayerListener implements Listener{
 	public SafeStaff pl;
 	Logger log = Logger.getLogger("Minecraft");
@@ -38,6 +40,7 @@ public class PlayerListener implements Listener{
 			p.sendMessage(ChatColor.RED + "Please login! /login [password]");
 			this.pl.notLoggedIn.put(p.getName(), "true");
 			this.pl.attempts.put(p.getName(), Integer.valueOf(this.pl.getConfig().getInt("maxAttempts")));
+			sendPluginMessage(this.pl, "SafeStaff", "Joined", p.getUniqueId().toString());
 
 			belowp = p.getLocation().subtract(0,1,0).getBlock().getLocation();
 			Material belowb = p.getLocation().subtract(0,1,0).getBlock().getType();
