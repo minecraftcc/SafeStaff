@@ -18,16 +18,16 @@ public class PluginMessageReceiver implements Listener {
 
     @EventHandler
     public void on(PluginMessageEvent event) {
-        if ( !event.getTag().equalsIgnoreCase("bml:SafeStaff") ) {
+        if ( !event.getTag().equalsIgnoreCase("bml:safestaff") ) {
             return;
         }
         ByteArrayDataInput in = ByteStreams.newDataInput(event.getData());
         String subChannel = in.readUTF();
-        if (subChannel.equalsIgnoreCase("Join")) {
+        if (subChannel.equalsIgnoreCase("joined")) {
             if (event.getReceiver() instanceof ProxiedPlayer) {
                 //ProxiedPlayer receiver = (ProxiedPlayer) event.getReceiver();
                 String UUID = in.readUTF();
-                p.getLogger().info("Join: " + UUID);
+                p.getLogger().info("Joined: " + UUID);
             }
         }
     }
