@@ -2,18 +2,3 @@ name: ${project.name}
 author: bmlzootown
 version: ${project.version}
 main: ml.bmlzootown.SafeStaff
-api-version: 1.18
-commands:
-     safestaff:
-          description: Displays available commands for SafeStaff
-     login:
-          description: Allows a staff member to login
-permissions:
-    SafeStaff.use:
-        default: false
-    SafeStaff.admin:
-        default: false
-    SafeStaff.mod:
-        default: false
-    SafeStaff.notification:
-        default: op
