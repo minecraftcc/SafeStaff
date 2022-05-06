@@ -2,6 +2,7 @@ package ml.bmlzootown;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import com.google.common.io.ByteArrayDataInput;
@@ -58,9 +59,13 @@ public class SafeStaff extends JavaPlugin implements PluginMessageListener {
 		}
 		ByteArrayDataInput in = ByteStreams.newDataInput(message);
 		String subChannel = in.readUTF();
-		if (subChannel.equalsIgnoreCase("Testing")) {
+		if (subChannel.equalsIgnoreCase("already")) {
 			String data = in.readUTF();
-			this.log.info("onPluginMessage: " + data);
+			Player p = Bukkit.getPlayer(UUID.fromString(data));
+			if (p != null) {
+				this.notLoggedIn.remove(p.getName());
+				p.sendMessage(ChatColor.GREEN + "You are already logged in -- welcome back!");
+			}
 		}
 	}
 
