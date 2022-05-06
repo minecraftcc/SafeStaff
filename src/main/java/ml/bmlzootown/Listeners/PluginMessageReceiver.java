@@ -31,6 +31,7 @@ public class PluginMessageReceiver implements Listener {
                 //p.getLogger().info("Joined: " + UUID);
                 if (!SafeStaff.players.contains(UUID)) {
                     //p.getLogger().info("Added player to list!");
+                    if (SafeStaff.already.contains(UUID)) return;
                     SafeStaff.players.add(UUID);
                 }
             }
@@ -38,8 +39,11 @@ public class PluginMessageReceiver implements Listener {
             String UUID = in.readUTF();
             //p.getLogger().info("Authenticated: " + UUID);
             SafeStaff.players.remove(UUID);
+            SafeStaff.already.add(UUID);
             //p.getLogger().info("Removed player from list!");
         }
     }
+
+
 
 }
