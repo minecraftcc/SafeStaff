@@ -63,8 +63,10 @@ public class SafeStaff extends JavaPlugin implements PluginMessageListener {
 			String data = in.readUTF();
 			Player p = Bukkit.getPlayer(UUID.fromString(data));
 			if (p != null) {
-				this.notLoggedIn.remove(p.getName());
-				p.sendMessage(ChatColor.GREEN + "You are already logged in -- welcome back!");
+				if (SafeStaff.hasPerm(p, "SafeStaff.use")) {
+					this.notLoggedIn.remove(p.getName());
+					p.sendMessage(ChatColor.GREEN + "You are already logged in -- welcome back!");
+				}
 			}
 		}
 	}
