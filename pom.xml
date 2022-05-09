@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ml.bmlzootown</groupId>
-    <artifactId>SafeStaff</artifactId>
-    <version>1.5.4</version>
-    <name>SafeStaff</name>
+    <artifactId>SafeStaff--1.15.2-</artifactId>
+    <version>1.5.5</version>
+    <name>SafeStaff-1.15.2</name>
 
     <build>
         <resources>
