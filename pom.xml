@@ -6,7 +6,7 @@
 
     <groupId>ml.bmlzootown</groupId>
     <artifactId>SafeStaff-Bungee</artifactId>
-    <version>1.5.4</version>
+    <version>1.5.5</version>
     <name>SafeStaff-Bungee</name>
 
     <build>
